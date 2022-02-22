@@ -7,18 +7,13 @@ const forecast = (latitude, longitude, callback) => {
 
 
     request({ url, json: true}, (error, { body }) => {
+        console.log(body);
         if(error){
             callback('Could not connect to the weather service.', undefined)
         }else if(body.error){
             callback('Could not find location.', undefined)            
         }else{
-            // callback(undefined, {
-            //     Location: response.body.name,
-            //     Temperature: response.body.main.temp + ' degrees Celcius',
-            //     Humidity: response.body.main.humidity + '%',
-            //     Url: url
-            // }) 
-            callback(undefined, " It is currently " + body.main.temp + " degrees Celsius with " + body.main.humidity + "% humidity.") + "\nLink: " + url          
+            callback(undefined, " It is currently " + body.main.temp + "°C (feels like " + body.main.feels_like + "°C) with " + body.main.humidity + "% humidity and " + body.wind.speed + "km/h wind.") + "\nLink: " + url          
         }
     })
 }
