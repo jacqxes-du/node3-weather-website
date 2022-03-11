@@ -1,4 +1,3 @@
-const chalk = require("chalk")
 const request = require("request")
 
 const forecast = (latitude, longitude, callback) => {
